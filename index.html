@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Никита Петренко — Менеджер проектов</title>
+<meta name="description" content="Никита Петренко — менеджер проектов с опытом управления продуктом в высоконагруженных сервисах Яндекса и Сравни.ру">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff;
+    --bg-soft:#f6f7f9;
+    --panel:#f6f7f9;
+    --panel-border:#e6e8ee;
+    --text:#161a22;
+    --text-dim:#5b6472;
+    --text-faint:#8a93a3;
+    --accent:#0e9d78;
+    --accent-2:#4a5fd6;
+    --white:#ffffff;
+    --radius:16px;
+    --maxw:920px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+
+  /* NAV */
+  header.nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,255,255,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--panel-border);
+  }
+  .nav-inner{
+    max-width:var(--maxw);margin:0 auto;padding:14px 24px;
+    display:flex;align-items:center;justify-content:space-between;
+    gap:16px;
+  }
+  .nav-name{font-weight:700;font-size:15px;letter-spacing:.2px;}
+  .nav-links{display:flex;gap:22px;font-size:14px;color:var(--text-dim);}
+  .nav-links a:hover{color:var(--text);}
+  .nav-cta{
+    font-size:13px;font-weight:600;color:#ffffff;
+    background:var(--accent);padding:8px 16px;border-radius:100px;
+    white-space:nowrap;
+  }
+  .nav-cta:hover{opacity:.9;}
+  @media (max-width:640px){ .nav-links{display:none;} }
+
+  /* HERO */
+  .hero{padding:72px 0 56px;}
+  .hero-inner{display:flex;align-items:center;gap:40px;flex-wrap:wrap;}
+  .photo{
+    width:148px;height:148px;border-radius:28px;object-fit:cover;
+    border:1px solid var(--panel-border);
+    box-shadow:0 8px 24px rgba(20,25,40,0.08);
+    flex-shrink:0;
+  }
+  .hero-text{flex:1;min-width:260px;}
+  .eyebrow{
+    color:var(--accent);font-weight:700;font-size:13px;
+    text-transform:uppercase;letter-spacing:1.4px;margin-bottom:12px;
+  }
+  h1{font-size:clamp(30px,5vw,44px);font-weight:800;letter-spacing:-0.5px;line-height:1.1;}
+  .role{color:var(--text-dim);font-size:19px;margin-top:10px;font-weight:500;}
+  .meta-row{
+    display:flex;flex-wrap:wrap;gap:10px;margin-top:20px;
+  }
+  .pill{
+    font-size:13px;color:var(--text-dim);
+    border:1px solid var(--panel-border);
+    padding:6px 13px;border-radius:100px;
+    display:flex;align-items:center;gap:6px;
+  }
+  .hero-cta{display:flex;gap:12px;margin-top:26px;flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--accent);color:#ffffff;font-weight:700;font-size:14px;
+    padding:12px 22px;border-radius:100px;
+    box-shadow:0 6px 16px rgba(14,157,120,0.25);
+  }
+  .btn-primary:hover{opacity:.9;}
+  .btn-secondary{
+    border:1px solid var(--panel-border);color:var(--text);font-weight:600;font-size:14px;
+    padding:12px 22px;border-radius:100px;
+  }
+  .btn-secondary:hover{border-color:var(--text-dim);}
+
+  /* STATS */
+  .stats{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+    background:var(--panel-border);
+    border:1px solid var(--panel-border);border-radius:var(--radius);
+    overflow:hidden;margin-top:8px;
+    box-shadow:0 4px 20px rgba(20,25,40,0.05);
+  }
+  .stat{background:var(--panel);padding:22px 18px;text-align:center;}
+  .stat b{
+    display:block;font-size:26px;font-weight:800;
+    background:linear-gradient(135deg,var(--accent),var(--accent-2));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .stat span{display:block;font-size:12.5px;color:var(--text-dim);margin-top:6px;line-height:1.35;}
+  @media (max-width:700px){ .stats{grid-template-columns:repeat(2,1fr);} }
+
+  /* SECTIONS */
+  section{padding:64px 0;border-top:1px solid var(--panel-border);}
+  .section-head{margin-bottom:34px;}
+  .section-num{color:var(--accent);font-family:monospace;font-size:13px;font-weight:700;}
+  h2{font-size:26px;font-weight:800;margin-top:6px;letter-spacing:-0.3px;}
+  .lead{color:var(--text-dim);font-size:16px;max-width:680px;margin-top:14px;}
+
+  /* EXPERIENCE */
+  .job{
+    display:grid;grid-template-columns:170px 1fr;gap:28px;
+    padding:28px 0;border-top:1px solid var(--panel-border);
+  }
+  .job:first-of-type{border-top:none;}
+  .job-period{color:var(--text-faint);font-size:13px;font-weight:600;line-height:1.5;}
+  .job-period .dur{display:block;color:var(--text-faint);font-weight:400;margin-top:3px;}
+  .job-title{font-size:18px;font-weight:700;}
+  .job-company{color:var(--accent-2);font-weight:600;font-size:14.5px;margin-top:3px;}
+  .job-summary{color:var(--text-dim);font-size:15px;margin-top:10px;}
+  .job ul{margin-top:14px;padding-left:0;list-style:none;}
+  .job li{
+    position:relative;padding-left:20px;color:var(--text-dim);font-size:14.5px;
+    margin-top:9px;
+  }
+  .job li::before{
+    content:"";position:absolute;left:0;top:9px;width:6px;height:6px;border-radius:50%;
+    background:var(--accent);
+  }
+  @media (max-width:640px){
+    .job{grid-template-columns:1fr;gap:8px;}
+  }
+
+  /* EDUCATION */
+  .edu{
+    background:var(--panel);border:1px solid var(--panel-border);border-radius:var(--radius);
+    padding:22px 24px;margin-top:14px;
+    box-shadow:0 4px 16px rgba(20,25,40,0.04);
+  }
+  .edu-year{color:var(--accent);font-weight:700;font-size:13px;}
+  .edu-title{font-weight:700;font-size:16px;margin-top:6px;}
+  .edu-sub{color:var(--text-dim);font-size:14px;margin-top:4px;}
+
+  /* SKILLS */
+  .skill-group{margin-top:26px;}
+  .skill-group h3{font-size:14px;color:var(--text-dim);font-weight:600;margin-bottom:12px;text-transform:uppercase;letter-spacing:.6px;}
+  .tags{display:flex;flex-wrap:wrap;gap:9px;}
+  .tag{
+    font-size:13.5px;color:var(--text);background:var(--panel);
+    border:1px solid var(--panel-border);padding:7px 14px;border-radius:100px;
+  }
+  .lang-row{display:flex;gap:28px;flex-wrap:wrap;margin-top:8px;}
+  .lang b{font-size:15px;font-weight:700;}
+  .lang span{display:block;color:var(--text-dim);font-size:13.5px;margin-top:2px;}
+
+  /* CONTACT */
+  .contact-box{
+    background:linear-gradient(135deg,rgba(14,157,120,0.06),rgba(74,95,214,0.06));
+    border:1px solid var(--panel-border);border-radius:20px;
+    padding:44px 32px;text-align:center;
+  }
+  .contact-box h2{font-size:28px;}
+  .contact-box p{color:var(--text-dim);margin-top:12px;max-width:480px;margin-left:auto;margin-right:auto;}
+  .contact-actions{display:flex;gap:12px;justify-content:center;margin-top:26px;flex-wrap:wrap;}
+
+  footer{padding:32px 0 48px;text-align:center;color:var(--text-faint);font-size:13px;}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="nav-name">Никита Петренко</div>
+    <nav class="nav-links">
+      <a href="#about">Обо мне</a>
+      <a href="#experience">Опыт</a>
+      <a href="#education">Образование</a>
+      <a href="#skills">Навыки</a>
+    </nav>
+    <a class="nav-cta" href="mailto:petrenkonikitagm@gmail.com">Написать</a>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero" style="border-top:none;">
+    <div class="hero-inner">
+      <img class="photo" src="assets/photo.png" alt="Никита Петренко">
+      <div class="hero-text">
+        <div class="eyebrow">Открыт к предложениям</div>
+        <h1>Никита Петренко</h1>
+        <div class="role">Менеджер проектов / Руководитель проектов</div>
+        <div class="meta-row">
+          <span class="pill">📍 Москва</span>
+          <span class="pill">🧳 Готов к командировкам</span>
+          <span class="pill">💼 Опыт 5 лет 10 месяцев</span>
+          <span class="pill">🎓 B2 английский</span>
+        </div>
+        <div class="hero-cta">
+          <a class="btn-primary" href="mailto:petrenkonikitagm@gmail.com">petrenkonikitagm@gmail.com</a>
+          <a class="btn-secondary" href="#experience">Смотреть опыт ↓</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0;border-top:none;">
+    <div class="stats">
+      <div class="stat"><b>−24%</b><span>обращений в поддержку Драйва</span></div>
+      <div class="stat"><b>×2.5</b><span>рост автоматизированных обращений</span></div>
+      <div class="stat"><b>20–40%</b><span>снижение издержек без потери качества</span></div>
+      <div class="stat"><b>+55%</b><span>рост доли роботизированных ответов</span></div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="section-head">
+      <div class="section-num">01 — О себе</div>
+      <h2>Обо мне</h2>
+    </div>
+    <p class="lead" style="font-size:16.5px;color:var(--text);max-width:760px;">
+      Менеджер проектов с опытом управления продуктом в высоконагруженных сервисах.
+      Веду проекты полным циклом: от постановки OKR и приоритизации бэклога до запуска
+      и передачи в операционку — например, с нуля выстроил поддержку нового продукта
+      в Яндекс Go. Координирую продукт, разработку, операционные и смежные команды
+      как партнёр, а не постановщик задач.
+    </p>
+    <p class="lead" style="font-size:16.5px;color:var(--text);max-width:760px;margin-top:14px;">
+      Каждое решение подтверждаю цифрами: снизил долю обращений в поддержку на 24%,
+      увеличил автоматизацию в 2,5 раза, сократил издержки на 20–40% без потери
+      качества сервиса.
+    </p>
+  </section>
+
+  <section id="experience">
+    <div class="section-head">
+      <div class="section-num">02 — Опыт работы</div>
+      <h2>Опыт работы · 5 лет 10 месяцев</h2>
+    </div>
+
+    <div class="job">
+      <div class="job-period">Сентябрь 2025 —<br>настоящее время<span class="dur">11 месяцев</span></div>
+      <div>
+        <div class="job-title">Менеджер проектов</div>
+        <div class="job-company">Яндекс · Москва</div>
+        <p class="job-summary">Управление продуктовым направлением поддержки Яндекс Такси и Яндекс Драйв: постановка и трекинг OKR, ведение продуктового бэклога, координация продукта, разработки и операционных команд.</p>
+        <ul>
+          <li>Снизил долю обращений в поддержку Драйва на 24% за счёт запуска и координации продуктовых инициатив</li>
+          <li>Увеличил долю автоматизированных обращений в 2,5 раза, приоритизировав разработку нужных API</li>
+          <li>Спроектировал и внедрил новую систему классификации обращений для всей поддержки Драйва</li>
+          <li>Запустил с нуля линию поддержки нового продукта в Яндекс Go — от постановки задач до технической настройки и передачи операционной команде</li>
+          <li>На 20% снизил затраты на промокоды поддержки Такси за счёт А/Б эксперимента без потери CSAT</li>
+          <li>Внедрил автоматическую суммаризацию диалогов в 10 линиях поддержки Такси, ускорив обработку обращений на 11%</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="job-period">Октябрь 2024 —<br>Сентябрь 2025<span class="dur">1 год</span></div>
+      <div>
+        <div class="job-title">Руководитель направления автоматизации</div>
+        <div class="job-company">Сравни.ру, ООО · Москва</div>
+        <ul>
+          <li>Управлял проектами по автоматизации процессов клиентской поддержки, оптимизируя рабочие процессы — сократил время обработки запросов на 20%</li>
+          <li>Разрабатывал стратегию развития чат-бота поддержки, планировал бюджет и контролировал эффективность — увеличил долю автоматизированных ответов вдвое</li>
+          <li>Формировал и управлял командой специалистов по роботизации: найм, обучение и развитие</li>
+          <li>Координировал работу с другими подразделениями и стейкхолдерами, обеспечивая интеграцию автоматизированных решений в клиентский сервис</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="job-period">Март 2023 —<br>Сентябрь 2024<span class="dur">1 год 7 месяцев</span></div>
+      <div>
+        <div class="job-title">Руководитель группы роботизации клиентской поддержки</div>
+        <div class="job-company">Сравни.ру, ООО · Москва</div>
+        <ul>
+          <li>Увеличил процент роботизированных ответов на 55%, переосмыслив функции бота</li>
+          <li>Оптимизировал процесс обработки тикетов, сократив затраты на 40%</li>
+          <li>Выстроил систему метрик и отчётности, обеспечив прозрачность и контроль эффективности бота</li>
+          <li>Внедрил API-интеграции с продуктами компании для более релевантных ответов клиентам</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="job-period">Февраль 2022 —<br>Февраль 2023<span class="dur">1 год 1 месяц</span></div>
+      <div>
+        <div class="job-title">Специалист службы заботы</div>
+        <div class="job-company">Сравни.ру, ООО · Москва</div>
+        <ul>
+          <li>Отвечал клиентам на вопросы по функционалу сервиса, помогая эффективно использовать продукт</li>
+          <li>Помогал в выборе продуктов сервиса, подбирая оптимальные решения под запросы</li>
+          <li>Взаимодействовал с другими отделами и разработкой, передавая обратную связь</li>
+          <li>Участвовал в расширении базы знаний, создавая и обновляя материалы</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="job-period">Сентябрь 2020 —<br>Март 2021<span class="dur">7 месяцев</span></div>
+      <div>
+        <div class="job-title">Customer Support Specialist</div>
+        <div class="job-company">Aviasales.ru · Санкт-Петербург</div>
+        <ul>
+          <li>Работал с системой тикетов, отслеживал статус обращений и контролировал их своевременное решение</li>
+          <li>Поддерживал клиентов сервиса, улучшая пользовательский опыт</li>
+          <li>Обеспечивал наполнение базы знаний, создавая инструкции</li>
+          <li>Взаимодействовал с другими отделами и разработкой, способствуя улучшению продукта</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="job-period">Сентябрь 2019 —<br>Май 2020<span class="dur">9 месяцев</span></div>
+      <div>
+        <div class="job-title">Специалист отдела обработки заявок</div>
+        <div class="job-company">Рокетбанк · Москва</div>
+        <ul>
+          <li>Оказывал техническую поддержку клиентов, анализировал запросы и находил оптимальные решения</li>
+          <li>Обрабатывал заявки на выпуск карт и проверял корректность данных</li>
+          <li>Организовывал назначение встреч для доставки карт, повышая удовлетворённость клиентов</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="section-head">
+      <div class="section-num">03 — Образование</div>
+      <h2>Образование</h2>
+    </div>
+    <div class="edu">
+      <div class="edu-year">2023 · Бакалавр</div>
+      <div class="edu-title">Финансовый университет при Правительстве Российской Федерации, Москва</div>
+      <div class="edu-sub">Институт онлайн-образования, «Финансовые рынки и банки»</div>
+    </div>
+    <div class="edu">
+      <div class="edu-year">2019 · Среднее специальное</div>
+      <div class="edu-title">Звенигородский филиал Финуниверситета</div>
+      <div class="edu-sub">Финансы</div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="section-head">
+      <div class="section-num">04 — Навыки</div>
+      <h2>Навыки и языки</h2>
+    </div>
+
+    <div class="lang-row">
+      <div class="lang"><b>Русский</b><span>Родной</span></div>
+      <div class="lang"><b>Английский</b><span>B2 — средне-продвинутый</span></div>
+    </div>
+
+    <div class="skill-group">
+      <h3>Управление проектами</h3>
+      <div class="tags">
+        <span class="tag">Проектный менеджмент</span>
+        <span class="tag">Основы управления проектами</span>
+        <span class="tag">Жизненный цикл проекта</span>
+        <span class="tag">Формирование границ проекта</span>
+        <span class="tag">Управление ожиданиями</span>
+        <span class="tag">Управление рисками</span>
+        <span class="tag">Управление стейкхолдерами</span>
+        <span class="tag">Диаграмма Ганта</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <h3>Продукт и Agile</h3>
+      <div class="tags">
+        <span class="tag">Разработка бизнес-требований</span>
+        <span class="tag">Приоритизация бэклога</span>
+        <span class="tag">Управление бэклогом</span>
+        <span class="tag">OKR</span>
+        <span class="tag">RICE</span>
+        <span class="tag">Agile</span>
+        <span class="tag">Agile Project Management</span>
+        <span class="tag">A/B тесты</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <h3>Инструменты</h3>
+      <div class="tags">
+        <span class="tag">Atlassian Jira</span>
+        <span class="tag">Atlassian Confluence</span>
+        <span class="tag">Wiki</span>
+        <span class="tag">API</span>
+        <span class="tag">DataLens</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" style="padding-bottom:24px;">
+    <div class="contact-box">
+      <h2>Открыт к новым проектам</h2>
+      <p>Готов обсудить позицию менеджера или руководителя проектов. Проживаю в Москве, к переезду не готов, к командировкам — да.</p>
+      <div class="contact-actions">
+        <a class="btn-primary" href="mailto:petrenkonikitagm@gmail.com">petrenkonikitagm@gmail.com</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  © 2026 Никита Петренко · Резюме обновлено 24 июля 2026
+</footer>
+
+</body>
+</html>
