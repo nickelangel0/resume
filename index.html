@@ -21,6 +21,7 @@
     --panel:#f6f7f9;
     --panel-border:#e6e8ee;
     --text:#161a22;
+    --text-body:#38404e;
     --text-dim:#5b6472;
     --text-faint:#8a93a3;
     --accent:#0e9d78;
@@ -57,22 +58,33 @@
   .nav-name{font-weight:700;font-size:15px;letter-spacing:.2px;}
   .nav-links{display:flex;gap:22px;font-size:14px;color:var(--text-dim);}
   .nav-links a:hover{color:var(--text);}
+  .nav-actions{display:flex;align-items:center;gap:10px;}
   .nav-cta{
     font-size:13px;font-weight:600;color:#ffffff;
     background:var(--accent);padding:8px 16px;border-radius:100px;
     white-space:nowrap;
   }
   .nav-cta:hover{opacity:.9;}
+  .nav-pdf{
+    font-size:13px;font-weight:600;color:var(--text);
+    border:1px solid var(--panel-border);padding:8px 15px;border-radius:100px;
+    white-space:nowrap;
+  }
+  .nav-pdf:hover{border-color:var(--text-dim);}
   @media (max-width:640px){ .nav-links{display:none;} }
+  @media (max-width:400px){ .nav-pdf span{display:none;} }
 
   /* HERO */
   .hero{padding:72px 0 56px;}
   .hero-inner{display:flex;align-items:center;gap:40px;flex-wrap:wrap;}
   .photo{
-    width:148px;height:148px;border-radius:28px;object-fit:cover;
+    width:208px;height:208px;border-radius:36px;object-fit:cover;
     border:1px solid var(--panel-border);
-    box-shadow:0 8px 24px rgba(20,25,40,0.08);
+    box-shadow:0 10px 30px rgba(20,25,40,0.1);
     flex-shrink:0;
+  }
+  @media (max-width:560px){
+    .photo{width:148px;height:148px;border-radius:30px;}
   }
   .hero-text{flex:1;min-width:260px;}
   .eyebrow{
@@ -81,8 +93,30 @@
   }
   h1{font-size:clamp(30px,5vw,44px);font-weight:800;letter-spacing:-0.5px;line-height:1.1;}
   .role{color:var(--text-dim);font-size:19px;margin-top:10px;font-weight:500;}
+
+  /* total-experience callout, separated from the rest of the profile facts */
+  .exp-badge{
+    display:inline-flex;align-items:center;gap:13px;margin-top:18px;
+    padding:11px 20px 11px 16px;border-radius:14px;
+    background:linear-gradient(135deg,rgba(14,157,120,0.09),rgba(74,95,214,0.09));
+    border:1px solid var(--panel-border);
+  }
+  .exp-badge-icon{font-size:23px;line-height:1;}
+  .exp-badge b{display:block;font-size:17px;font-weight:800;color:var(--text);letter-spacing:-0.2px;}
+  .exp-badge span{display:block;font-size:12.5px;color:var(--text-dim);margin-top:1px;}
+
+  /* contacts: email + Telegram, same visual weight, kept apart from the profile-fact pills */
+  .contact-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;}
+  .contact-chip{
+    display:flex;align-items:center;gap:9px;font-size:14px;font-weight:700;color:var(--text);
+    background:var(--panel);border:1px solid var(--panel-border);
+    padding:10px 18px;border-radius:100px;
+  }
+  .contact-chip .ico{font-size:16px;line-height:1;}
+  .contact-chip:hover{border-color:var(--accent);color:var(--accent);}
+
   .meta-row{
-    display:flex;flex-wrap:wrap;gap:10px;margin-top:20px;
+    display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;
   }
   .pill{
     font-size:13px;color:var(--text-dim);
@@ -90,6 +124,7 @@
     padding:6px 13px;border-radius:100px;
     display:flex;align-items:center;gap:6px;
   }
+  a.pill:hover{border-color:var(--text-dim);color:var(--text);}
   .hero-cta{display:flex;gap:12px;margin-top:26px;flex-wrap:wrap;}
   .btn-primary{
     background:var(--accent);color:#ffffff;font-weight:700;font-size:14px;
@@ -123,8 +158,7 @@
   /* SECTIONS */
   section{padding:64px 0;border-top:1px solid var(--panel-border);}
   .section-head{margin-bottom:34px;}
-  .section-num{color:var(--accent);font-family:monospace;font-size:13px;font-weight:700;}
-  h2{font-size:26px;font-weight:800;margin-top:6px;letter-spacing:-0.3px;}
+  h2{font-size:26px;font-weight:800;letter-spacing:-0.3px;}
   .lead{color:var(--text-dim);font-size:16px;max-width:680px;margin-top:14px;}
 
   /* EXPERIENCE */
@@ -135,20 +169,39 @@
   .job:first-of-type{border-top:none;}
   .job-period{color:var(--text-faint);font-size:13px;font-weight:600;line-height:1.5;}
   .job-period .dur{display:block;color:var(--text-faint);font-weight:400;margin-top:3px;}
-  .job-title{font-size:18px;font-weight:700;}
+  .job-title{font-size:19px;font-weight:800;letter-spacing:-0.2px;}
   .job-company{color:var(--accent-2);font-weight:600;font-size:14.5px;margin-top:3px;}
-  .job-summary{color:var(--text-dim);font-size:15px;margin-top:10px;}
+  .job-summary{color:var(--text-body);font-size:15.5px;line-height:1.65;margin-top:11px;}
   .job ul{margin-top:14px;padding-left:0;list-style:none;}
   .job li{
-    position:relative;padding-left:20px;color:var(--text-dim);font-size:14.5px;
-    margin-top:9px;
+    position:relative;padding-left:20px;color:var(--text-body);font-size:15px;line-height:1.6;
+    margin-top:11px;
   }
   .job li::before{
     content:"";position:absolute;left:0;top:9px;width:6px;height:6px;border-radius:50%;
     background:var(--accent);
   }
   @media (max-width:640px){
-    .job{grid-template-columns:1fr;gap:8px;}
+    .job{grid-template-columns:1fr;gap:10px;}
+  }
+
+  /* grouped company (multiple roles at the same company) */
+  .job-company-header{font-weight:800;font-size:17px;color:var(--text);}
+  .job-company-header .loc{color:var(--text-faint);font-weight:500;}
+  .role-track{
+    margin-top:20px;border-left:2px solid var(--panel-border);
+    padding-left:24px;display:flex;flex-direction:column;gap:28px;
+  }
+  .role-item{position:relative;}
+  .role-item::before{
+    content:"";position:absolute;left:-29px;top:5px;width:10px;height:10px;border-radius:50%;
+    background:var(--accent);border:2px solid var(--bg);
+  }
+  .role-period{color:var(--text-faint);font-size:12.5px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;}
+  .role-title{font-size:16px;font-weight:700;margin-top:4px;}
+  @media (max-width:640px){
+    .role-track{padding-left:20px;}
+    .role-item::before{left:-25px;}
   }
 
   /* EDUCATION */
@@ -184,6 +237,24 @@
   .contact-actions{display:flex;gap:12px;justify-content:center;margin-top:26px;flex-wrap:wrap;}
 
   footer{padding:32px 0 48px;text-align:center;color:var(--text-faint);font-size:13px;}
+
+  /* PRINT (used to generate the downloadable PDF) */
+  @media print{
+    .no-print{display:none !important;}
+    *{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;}
+    body{background:#fff;}
+    header.nav{display:none !important;}
+    .hero{padding-top:16px;}
+    section{padding:20px 0;}
+    .job{padding:16px 0;}
+    .role-track{gap:18px;}
+    .stats,.edu,.photo,.btn-primary,.btn-secondary{box-shadow:none !important;}
+    .edu{page-break-inside:avoid;break-inside:avoid;}
+    .job-title,.role-title,.edu-title{page-break-after:avoid;break-after:avoid;}
+    .job-period,.job-company-header{page-break-after:avoid;break-after:avoid;}
+    li{page-break-inside:avoid;break-inside:avoid;}
+  }
+  @page{ margin:12mm 12mm; }
 </style>
 </head>
 <body>
@@ -197,7 +268,10 @@
       <a href="#education">Образование</a>
       <a href="#skills">Навыки</a>
     </nav>
-    <a class="nav-cta" href="mailto:petrenkonikitagm@gmail.com">Написать</a>
+    <div class="nav-actions">
+      <a class="nav-pdf" href="Petrenko_Nikita_Resume.pdf" download><span>Скачать резюме в </span>PDF</a>
+      <a class="nav-cta" href="mailto:petrenkonikitagm@gmail.com">Написать</a>
+    </div>
   </div>
 </header>
 
@@ -210,14 +284,31 @@
         <div class="eyebrow">Открыт к предложениям</div>
         <h1>Никита Петренко</h1>
         <div class="role">Менеджер проектов / Руководитель проектов</div>
+
+        <div class="exp-badge">
+          <span class="exp-badge-icon">💼</span>
+          <div>
+            <b>5 лет 10 месяцев</b>
+            <span>общего опыта в проектном менеджменте</span>
+          </div>
+        </div>
+
+        <div class="contact-row">
+          <a class="contact-chip" href="mailto:petrenkonikitagm@gmail.com">
+            <span class="ico">✉️</span>petrenkonikitagm@gmail.com
+          </a>
+          <a class="contact-chip" href="https://t.me/p0werranger" target="_blank" rel="noopener">
+            <span class="ico">✏️</span>Написать в Telegram
+          </a>
+        </div>
+
         <div class="meta-row">
           <span class="pill">📍 Москва</span>
           <span class="pill">🧳 Готов к командировкам</span>
-          <span class="pill">💼 Опыт 5 лет 10 месяцев</span>
           <span class="pill">🎓 B2 английский</span>
         </div>
-        <div class="hero-cta">
-          <a class="btn-primary" href="mailto:petrenkonikitagm@gmail.com">petrenkonikitagm@gmail.com</a>
+        <div class="hero-cta no-print">
+          <a class="btn-primary" href="Petrenko_Nikita_Resume.pdf" download>Скачать резюме в PDF ↓</a>
           <a class="btn-secondary" href="#experience">Смотреть опыт ↓</a>
         </div>
       </div>
@@ -228,14 +319,13 @@
     <div class="stats">
       <div class="stat"><b>−24%</b><span>обращений в поддержку Драйва</span></div>
       <div class="stat"><b>×2.5</b><span>рост автоматизированных обращений</span></div>
-      <div class="stat"><b>20–40%</b><span>снижение издержек без потери качества</span></div>
+      <div class="stat"><b>−20%</b><span>затрат на промокоды без потери качества</span></div>
       <div class="stat"><b>+55%</b><span>рост доли роботизированных ответов</span></div>
     </div>
   </section>
 
   <section id="about">
     <div class="section-head">
-      <div class="section-num">01 — О себе</div>
       <h2>Обо мне</h2>
     </div>
     <p class="lead" style="font-size:16.5px;color:var(--text);max-width:760px;">
@@ -254,7 +344,6 @@
 
   <section id="experience">
     <div class="section-head">
-      <div class="section-num">02 — Опыт работы</div>
       <h2>Опыт работы · 5 лет 10 месяцев</h2>
     </div>
 
@@ -276,44 +365,41 @@
     </div>
 
     <div class="job">
-      <div class="job-period">Октябрь 2024 —<br>Сентябрь 2025<span class="dur">1 год</span></div>
+      <div class="job-period">Февраль 2022 —<br>Сентябрь 2025<span class="dur">3 года 7 месяцев</span></div>
       <div>
-        <div class="job-title">Руководитель направления автоматизации</div>
-        <div class="job-company">Сравни.ру, ООО · Москва</div>
-        <ul>
-          <li>Управлял проектами по автоматизации процессов клиентской поддержки, оптимизируя рабочие процессы — сократил время обработки запросов на 20%</li>
-          <li>Разрабатывал стратегию развития чат-бота поддержки, планировал бюджет и контролировал эффективность — увеличил долю автоматизированных ответов вдвое</li>
-          <li>Формировал и управлял командой специалистов по роботизации: найм, обучение и развитие</li>
-          <li>Координировал работу с другими подразделениями и стейкхолдерами, обеспечивая интеграцию автоматизированных решений в клиентский сервис</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="job">
-      <div class="job-period">Март 2023 —<br>Сентябрь 2024<span class="dur">1 год 7 месяцев</span></div>
-      <div>
-        <div class="job-title">Руководитель группы роботизации клиентской поддержки</div>
-        <div class="job-company">Сравни.ру, ООО · Москва</div>
-        <ul>
-          <li>Увеличил процент роботизированных ответов на 55%, переосмыслив функции бота</li>
-          <li>Оптимизировал процесс обработки тикетов, сократив затраты на 40%</li>
-          <li>Выстроил систему метрик и отчётности, обеспечив прозрачность и контроль эффективности бота</li>
-          <li>Внедрил API-интеграции с продуктами компании для более релевантных ответов клиентам</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="job">
-      <div class="job-period">Февраль 2022 —<br>Февраль 2023<span class="dur">1 год 1 месяц</span></div>
-      <div>
-        <div class="job-title">Специалист службы заботы</div>
-        <div class="job-company">Сравни.ру, ООО · Москва</div>
-        <ul>
-          <li>Отвечал клиентам на вопросы по функционалу сервиса, помогая эффективно использовать продукт</li>
-          <li>Помогал в выборе продуктов сервиса, подбирая оптимальные решения под запросы</li>
-          <li>Взаимодействовал с другими отделами и разработкой, передавая обратную связь</li>
-          <li>Участвовал в расширении базы знаний, создавая и обновляя материалы</li>
-        </ul>
+        <div class="job-company-header">Сравни.ру, ООО · <span class="loc">Москва</span></div>
+        <div class="role-track">
+          <div class="role-item">
+            <div class="role-period">Октябрь 2024 — Сентябрь 2025 · 1 год</div>
+            <div class="role-title">Руководитель направления автоматизации</div>
+            <ul>
+              <li>Управлял проектами по автоматизации процессов клиентской поддержки, оптимизируя рабочие процессы — сократил время обработки запросов на 20%</li>
+              <li>Разрабатывал стратегию развития чат-бота поддержки, планировал бюджет и контролировал эффективность — увеличил долю автоматизированных ответов вдвое</li>
+              <li>Формировал и управлял командой специалистов по роботизации: найм, обучение и развитие</li>
+              <li>Координировал работу с другими подразделениями и стейкхолдерами, обеспечивая интеграцию автоматизированных решений в клиентский сервис</li>
+            </ul>
+          </div>
+          <div class="role-item">
+            <div class="role-period">Март 2023 — Сентябрь 2024 · 1 год 7 месяцев</div>
+            <div class="role-title">Руководитель группы роботизации клиентской поддержки</div>
+            <ul>
+              <li>Увеличил процент роботизированных ответов на 55%, переосмыслив функции бота</li>
+              <li>Оптимизировал процесс обработки тикетов, сократив затраты на 40%</li>
+              <li>Выстроил систему метрик и отчётности, обеспечив прозрачность и контроль эффективности бота</li>
+              <li>Внедрил API-интеграции с продуктами компании для более релевантных ответов клиентам</li>
+            </ul>
+          </div>
+          <div class="role-item">
+            <div class="role-period">Февраль 2022 — Февраль 2023 · 1 год 1 месяц</div>
+            <div class="role-title">Специалист службы заботы</div>
+            <ul>
+              <li>Отвечал клиентам на вопросы по функционалу сервиса, помогая эффективно использовать продукт</li>
+              <li>Помогал в выборе продуктов сервиса, подбирая оптимальные решения под запросы</li>
+              <li>Взаимодействовал с другими отделами и разработкой, передавая обратную связь</li>
+              <li>Участвовал в расширении базы знаний, создавая и обновляя материалы</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -347,7 +433,6 @@
 
   <section id="education">
     <div class="section-head">
-      <div class="section-num">03 — Образование</div>
       <h2>Образование</h2>
     </div>
     <div class="edu">
@@ -364,7 +449,6 @@
 
   <section id="skills">
     <div class="section-head">
-      <div class="section-num">04 — Навыки</div>
       <h2>Навыки и языки</h2>
     </div>
 
@@ -417,8 +501,10 @@
     <div class="contact-box">
       <h2>Открыт к новым проектам</h2>
       <p>Готов обсудить позицию менеджера или руководителя проектов. Проживаю в Москве, к переезду не готов, к командировкам — да.</p>
-      <div class="contact-actions">
-        <a class="btn-primary" href="mailto:petrenkonikitagm@gmail.com">petrenkonikitagm@gmail.com</a>
+      <div class="contact-actions no-print">
+        <a class="btn-primary" href="mailto:petrenkonikitagm@gmail.com">✉️ petrenkonikitagm@gmail.com</a>
+        <a class="btn-secondary" href="https://t.me/p0werranger" target="_blank" rel="noopener">✏️ Написать в Telegram</a>
+        <a class="btn-secondary" href="Petrenko_Nikita_Resume.pdf" download>Скачать резюме в PDF ↓</a>
       </div>
     </div>
   </section>
