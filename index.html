@@ -13,192 +13,251 @@
 <link rel="manifest" href="site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#ffffff;
-    --bg-soft:#f6f7f9;
-    --panel:#f6f7f9;
-    --panel-border:#e6e8ee;
-    --text:#161a22;
-    --text-body:#38404e;
-    --text-dim:#5b6472;
-    --text-faint:#8a93a3;
-    --accent:#0e9d78;
-    --accent-2:#4a5fd6;
+    --bg:#faf9f5;
+    --bg-panel:#f1eee6;
+    --line:#ddd7c9;
+    --ink:#15171c;
+    --ink-soft:#42454d;
+    --ink-faint:#5b5e66;
+    --navy:#1f3a5f;
+    --navy-tint:rgba(31,58,95,0.07);
+    --bronze:#8a5a20;
     --white:#ffffff;
-    --radius:16px;
+    --radius-sm:6px;
+    --radius-md:10px;
     --maxw:920px;
+    --serif:'PT Serif',Georgia,serif;
+    --sans:'PT Sans','Segoe UI',system-ui,sans-serif;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   html{scroll-behavior:smooth;}
   body{
-    font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+    font-family:var(--sans);
     background:var(--bg);
-    color:var(--text);
-    line-height:1.55;
+    color:var(--ink);
+    line-height:1.6;
     -webkit-font-smoothing:antialiased;
   }
   a{color:inherit;text-decoration:none;}
   img{max-width:100%;display:block;}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+  ul{list-style:none;}
+
+  a:focus-visible,
+  button:focus-visible,
+  summary:focus-visible,
+  input:focus-visible{
+    outline:2px solid var(--navy);
+    outline-offset:3px;
+    border-radius:2px;
+  }
+
+  .skip-link{
+    position:absolute;left:16px;top:-60px;z-index:100;
+    background:var(--navy);color:var(--white);
+    padding:10px 16px;border-radius:var(--radius-sm);
+    font-size:14px;font-weight:700;
+    transition:top .15s ease;
+  }
+  .skip-link:focus{top:16px;}
 
   /* NAV */
   header.nav{
     position:sticky;top:0;z-index:50;
-    background:rgba(255,255,255,0.85);
-    backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--panel-border);
+    background:rgba(250,249,245,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
   }
   .nav-inner{
-    max-width:var(--maxw);margin:0 auto;padding:14px 24px;
+    max-width:var(--maxw);margin:0 auto;padding:16px 24px;
     display:flex;align-items:center;justify-content:space-between;
     gap:16px;
   }
-  .nav-name{font-weight:700;font-size:15px;letter-spacing:.2px;}
-  .nav-links{display:flex;gap:22px;font-size:14px;color:var(--text-dim);}
-  .nav-links a:hover{color:var(--text);}
+  .nav-name{font-family:var(--serif);font-weight:700;font-size:16px;letter-spacing:.1px;}
+  .nav-links{display:flex;gap:26px;font-size:13.5px;color:var(--ink-soft);}
+  .nav-links a{
+    text-transform:uppercase;letter-spacing:.5px;font-weight:700;font-size:12px;
+    padding:4px 2px;border-bottom:1px solid transparent;
+  }
+  .nav-links a:hover{color:var(--navy);border-bottom-color:var(--navy);}
   .nav-actions{display:flex;align-items:center;gap:10px;}
-  .nav-cta{
-    font-size:13px;font-weight:600;color:#ffffff;
-    background:var(--accent);padding:8px 16px;border-radius:100px;
+  .btn-nav{
+    font-size:13px;font-weight:700;
+    display:inline-flex;align-items:center;gap:4px;min-height:44px;
+    padding:10px 18px;border-radius:var(--radius-sm);
     white-space:nowrap;
   }
-  .nav-cta:hover{opacity:.9;}
-  .nav-pdf{
-    font-size:13px;font-weight:600;color:var(--text);
-    border:1px solid var(--panel-border);padding:8px 15px;border-radius:100px;
-    white-space:nowrap;
-  }
-  .nav-pdf:hover{border-color:var(--text-dim);}
+  .nav-cta{background:var(--navy);color:var(--white);}
+  .nav-cta:hover{background:#16304f;}
+  .nav-pdf{border:1px solid var(--line);color:var(--ink);}
+  .nav-pdf:hover{border-color:var(--navy);color:var(--navy);}
   @media (max-width:640px){ .nav-links{display:none;} }
-  @media (max-width:400px){ .nav-pdf span{display:none;} }
+  @media (max-width:400px){ .nav-pdf span{display:none;} .nav-pdf{padding:10px 14px;} }
+
+  /* MOBILE MENU (native <details>, zero-JS-required disclosure) */
+  .nav-mobile-toggle{display:none;}
+  .nav-mobile-toggle summary{
+    list-style:none;cursor:pointer;
+    width:40px;height:40px;display:flex;align-items:center;justify-content:center;
+    border:1px solid var(--line);border-radius:var(--radius-sm);
+  }
+  .nav-mobile-toggle summary::-webkit-details-marker{display:none;}
+  .hamburger{width:16px;height:11px;position:relative;display:block;}
+  .hamburger span{
+    position:absolute;left:0;width:100%;height:1.5px;background:var(--ink);
+    transition:transform .15s ease,opacity .15s ease;
+  }
+  .hamburger span:nth-child(1){top:0;}
+  .hamburger span:nth-child(2){top:5px;}
+  .hamburger span:nth-child(3){top:10px;}
+  .nav-mobile-toggle[open] .hamburger span:nth-child(1){transform:translateY(5px) rotate(45deg);}
+  .nav-mobile-toggle[open] .hamburger span:nth-child(2){opacity:0;}
+  .nav-mobile-toggle[open] .hamburger span:nth-child(3){transform:translateY(-5px) rotate(-45deg);}
+  .nav-links-mobile{
+    display:flex;flex-direction:column;
+    position:absolute;top:100%;left:0;width:100%;
+    border-top:1px solid var(--line);
+    background:var(--bg);
+    box-shadow:0 12px 24px rgba(21,23,28,0.08);
+  }
+  .nav-links-mobile a{
+    display:flex;align-items:center;min-height:48px;
+    padding:0 24px;font-size:15px;font-weight:700;color:var(--ink);
+    border-top:1px solid var(--line);
+  }
+  .nav-links-mobile a:first-child{border-top:none;}
+  .nav-links-mobile a:hover{color:var(--navy);background:var(--navy-tint);}
+  @media (max-width:640px){ .nav-mobile-toggle{display:block;} }
 
   /* HERO */
-  .hero{padding:72px 0 56px;}
-  .hero-inner{display:flex;align-items:center;gap:40px;flex-wrap:wrap;}
+  .hero{padding:64px 0 48px;}
+  .hero-inner{display:flex;align-items:flex-start;gap:44px;flex-wrap:wrap;}
   .photo{
-    width:208px;height:208px;border-radius:36px;object-fit:cover;
-    border:1px solid var(--panel-border);
-    box-shadow:0 10px 30px rgba(20,25,40,0.1);
+    width:184px;height:184px;border-radius:var(--radius-md);object-fit:cover;
+    border:1px solid var(--line);
     flex-shrink:0;
   }
   @media (max-width:560px){
-    .photo{width:148px;height:148px;border-radius:30px;}
+    .photo{width:132px;height:132px;}
   }
-  .hero-text{flex:1;min-width:260px;}
-  .eyebrow{
-    color:var(--accent);font-weight:700;font-size:13px;
-    text-transform:uppercase;letter-spacing:1.4px;margin-bottom:12px;
+  .hero-text{flex:1;min-width:280px;}
+  h1{font-family:var(--serif);font-size:clamp(32px,5vw,48px);font-weight:700;letter-spacing:-0.3px;line-height:1.08;}
+  .role{
+    color:var(--ink-soft);font-size:14px;margin-top:12px;font-weight:700;
+    text-transform:uppercase;letter-spacing:.6px;
   }
-  h1{font-size:clamp(30px,5vw,44px);font-weight:800;letter-spacing:-0.5px;line-height:1.1;}
-  .role{color:var(--text-dim);font-size:19px;margin-top:10px;font-weight:500;}
+  .status-line{
+    display:flex;align-items:center;gap:8px;margin-top:14px;
+    font-size:13.5px;color:var(--ink-soft);font-weight:400;
+  }
+  .status-dot{width:7px;height:7px;border-radius:50%;background:var(--bronze);flex-shrink:0;}
 
-  /* total-experience callout, separated from the rest of the profile facts */
-  .exp-badge{
-    display:inline-flex;align-items:center;gap:13px;margin-top:18px;
-    padding:11px 20px 11px 16px;border-radius:14px;
-    background:linear-gradient(135deg,rgba(14,157,120,0.09),rgba(74,95,214,0.09));
-    border:1px solid var(--panel-border);
+  .tenure{margin-top:22px;}
+  .tenure-label{
+    display:block;font-size:11.5px;color:var(--ink-faint);
+    text-transform:uppercase;letter-spacing:.6px;font-weight:700;
   }
-  .exp-badge-icon{font-size:23px;line-height:1;}
-  .exp-badge b{display:block;font-size:17px;font-weight:800;color:var(--text);letter-spacing:-0.2px;}
-  .exp-badge span{display:block;font-size:12.5px;color:var(--text-dim);margin-top:1px;}
+  .tenure-value{
+    display:block;font-family:var(--serif);font-size:21px;font-weight:700;
+    color:var(--navy);margin-top:4px;
+  }
 
-  /* contacts: email + Telegram, same visual weight, kept apart from the profile-fact pills */
-  .contact-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;}
+  .contact-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;}
   .contact-chip{
-    display:flex;align-items:center;gap:9px;font-size:14px;font-weight:700;color:var(--text);
-    background:var(--panel);border:1px solid var(--panel-border);
-    padding:10px 18px;border-radius:100px;
+    display:inline-flex;align-items:center;gap:9px;min-height:44px;
+    font-size:14px;font-weight:700;color:var(--ink);
+    border:1px solid var(--line);
+    padding:10px 18px;border-radius:var(--radius-sm);
   }
-  .contact-chip .ico{font-size:16px;line-height:1;}
-  .contact-chip:hover{border-color:var(--accent);color:var(--accent);}
+  .contact-chip .icon{width:16px;height:16px;flex-shrink:0;color:var(--ink-faint);}
+  .contact-chip:hover{border-color:var(--navy);color:var(--navy);}
+  .contact-chip:hover .icon{color:var(--navy);}
 
-  .meta-row{
-    display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;
+  .meta-line{
+    margin-top:14px;font-size:13.5px;color:var(--ink-faint);
   }
-  .pill{
-    font-size:13px;color:var(--text-dim);
-    border:1px solid var(--panel-border);
-    padding:6px 13px;border-radius:100px;
-    display:flex;align-items:center;gap:6px;
-  }
-  a.pill:hover{border-color:var(--text-dim);color:var(--text);}
-  .hero-cta{display:flex;gap:12px;margin-top:26px;flex-wrap:wrap;}
+  .meta-line span{margin:0 8px;color:var(--line);}
+  .meta-line span:first-child{margin-left:0;}
+
+  .hero-cta{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap;}
   .btn-primary{
-    background:var(--accent);color:#ffffff;font-weight:700;font-size:14px;
-    padding:12px 22px;border-radius:100px;
-    box-shadow:0 6px 16px rgba(14,157,120,0.25);
+    background:var(--navy);color:var(--white);font-weight:700;font-size:14px;
+    display:inline-flex;align-items:center;min-height:46px;white-space:nowrap;
+    padding:12px 24px;border-radius:var(--radius-sm);
   }
-  .btn-primary:hover{opacity:.9;}
+  .btn-primary:hover{background:#16304f;}
   .btn-secondary{
-    border:1px solid var(--panel-border);color:var(--text);font-weight:600;font-size:14px;
-    padding:12px 22px;border-radius:100px;
+    border:1px solid var(--line);color:var(--ink);font-weight:700;font-size:14px;
+    display:inline-flex;align-items:center;min-height:46px;white-space:nowrap;
+    padding:12px 24px;border-radius:var(--radius-sm);
   }
-  .btn-secondary:hover{border-color:var(--text-dim);}
+  .btn-secondary:hover{border-color:var(--navy);color:var(--navy);}
 
-  /* STATS */
-  .stats{
-    display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
-    background:var(--panel-border);
-    border:1px solid var(--panel-border);border-radius:var(--radius);
-    overflow:hidden;margin-top:8px;
-    box-shadow:0 4px 20px rgba(20,25,40,0.05);
+  /* FIGURES (results line — not a card grid: one flowing statement) */
+  .figures{
+    display:flex;flex-wrap:wrap;gap:28px 40px;
+    padding:30px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
   }
-  .stat{background:var(--panel);padding:22px 18px;text-align:center;}
-  .stat b{
-    display:block;font-size:26px;font-weight:800;
-    background:linear-gradient(135deg,var(--accent),var(--accent-2));
-    -webkit-background-clip:text;background-clip:text;color:transparent;
+  .fig{display:flex;align-items:baseline;gap:10px;flex:1 1 auto;}
+  .fig b{
+    font-family:var(--serif);font-size:26px;font-weight:700;color:var(--navy);
+    white-space:nowrap;
   }
-  .stat span{display:block;font-size:12.5px;color:var(--text-dim);margin-top:6px;line-height:1.35;}
-  @media (max-width:700px){ .stats{grid-template-columns:repeat(2,1fr);} }
+  .fig span{font-size:13.5px;color:var(--ink-soft);max-width:220px;line-height:1.4;}
 
   /* SECTIONS */
-  section{padding:64px 0;border-top:1px solid var(--panel-border);}
-  .section-head{margin-bottom:34px;}
-  h2{font-size:26px;font-weight:800;letter-spacing:-0.3px;}
-  .lead{color:var(--text-dim);font-size:16px;max-width:680px;margin-top:14px;}
+  section{padding:60px 0;border-top:1px solid var(--line);}
+  main section:first-of-type{border-top:none;}
+  .section-head{margin-bottom:32px;}
+  h2{font-family:var(--serif);font-size:26px;font-weight:700;letter-spacing:-0.2px;}
+  .lead{color:var(--ink-soft);font-size:16px;max-width:680px;margin-top:14px;}
+
+  #about p{
+    font-size:16.5px;color:var(--ink);max-width:740px;
+  }
+  #about p + p{margin-top:14px;}
 
   /* EXPERIENCE */
   .job{
     display:grid;grid-template-columns:170px 1fr;gap:28px;
-    padding:28px 0;border-top:1px solid var(--panel-border);
+    padding:30px 0;border-top:1px solid var(--line);
   }
-  .job:first-of-type{border-top:none;}
-  .job-period{color:var(--text-faint);font-size:13px;font-weight:600;line-height:1.5;}
-  .job-period .dur{display:block;color:var(--text-faint);font-weight:400;margin-top:3px;}
-  .job-title{font-size:19px;font-weight:800;letter-spacing:-0.2px;}
-  .job-company{color:var(--accent-2);font-weight:600;font-size:14.5px;margin-top:3px;}
-  .job-summary{color:var(--text-body);font-size:15.5px;line-height:1.65;margin-top:11px;}
-  .job ul{margin-top:14px;padding-left:0;list-style:none;}
+  .job:first-of-type{border-top:none;padding-top:0;}
+  .job-period{color:var(--ink-faint);font-size:13px;font-weight:700;line-height:1.5;}
+  .job-period .dur{display:block;color:var(--ink-faint);font-weight:400;margin-top:3px;}
+  .job-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;}
+  .job-company{font-family:var(--serif);font-weight:700;font-size:19px;color:var(--ink);}
+  .job-company .loc{color:var(--ink-faint);font-weight:400;font-family:var(--sans);font-size:14px;}
+  .job-title{color:var(--navy);font-weight:700;font-size:14.5px;margin-top:4px;}
+  .job-summary{color:var(--ink-soft);font-size:15.5px;line-height:1.65;margin-top:11px;}
+  .job ul{margin-top:14px;}
   .job li{
-    position:relative;padding-left:20px;color:var(--text-body);font-size:15px;line-height:1.6;
+    position:relative;padding-left:20px;color:var(--ink-soft);font-size:15px;line-height:1.6;
     margin-top:11px;
   }
   .job li::before{
-    content:"";position:absolute;left:0;top:9px;width:6px;height:6px;border-radius:50%;
-    background:var(--accent);
+    content:"";position:absolute;left:2px;top:9px;width:5px;height:5px;border-radius:50%;
+    background:var(--navy);
   }
   @media (max-width:640px){
-    .job{grid-template-columns:1fr;gap:10px;}
+    .job{grid-template-columns:1fr;gap:8px;}
   }
 
   /* grouped company (multiple roles at the same company) */
-  .job-company-header{font-weight:800;font-size:17px;color:var(--text);}
-  .job-company-header .loc{color:var(--text-faint);font-weight:500;}
   .role-track{
-    margin-top:20px;border-left:2px solid var(--panel-border);
+    margin-top:22px;border-left:1px solid var(--line);
     padding-left:24px;display:flex;flex-direction:column;gap:28px;
   }
   .role-item{position:relative;}
   .role-item::before{
-    content:"";position:absolute;left:-29px;top:5px;width:10px;height:10px;border-radius:50%;
-    background:var(--accent);border:2px solid var(--bg);
+    content:"";position:absolute;left:-29px;top:5px;width:8px;height:8px;border-radius:50%;
+    background:var(--navy);border:2px solid var(--bg);
   }
-  .role-period{color:var(--text-faint);font-size:12.5px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;}
-  .role-title{font-size:16px;font-weight:700;margin-top:4px;}
+  .role-period{color:var(--ink-faint);font-size:12.5px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;}
+  .role-title{font-weight:700;font-size:16px;margin-top:4px;color:var(--ink);}
   @media (max-width:640px){
     .role-track{padding-left:20px;}
     .role-item::before{left:-25px;}
@@ -206,37 +265,37 @@
 
   /* EDUCATION */
   .edu{
-    background:var(--panel);border:1px solid var(--panel-border);border-radius:var(--radius);
+    background:var(--bg-panel);border:1px solid var(--line);border-radius:var(--radius-md);
     padding:22px 24px;margin-top:14px;
-    box-shadow:0 4px 16px rgba(20,25,40,0.04);
   }
-  .edu-year{color:var(--accent);font-weight:700;font-size:13px;}
-  .edu-title{font-weight:700;font-size:16px;margin-top:6px;}
-  .edu-sub{color:var(--text-dim);font-size:14px;margin-top:4px;}
+  .edu-year{color:var(--bronze);font-weight:700;font-size:13px;}
+  .edu-title{font-weight:700;font-size:16px;margin-top:6px;font-family:var(--serif);}
+  .edu-sub{color:var(--ink-soft);font-size:14px;margin-top:4px;}
 
   /* SKILLS */
   .skill-group{margin-top:26px;}
-  .skill-group h3{font-size:14px;color:var(--text-dim);font-weight:600;margin-bottom:12px;text-transform:uppercase;letter-spacing:.6px;}
-  .tags{display:flex;flex-wrap:wrap;gap:9px;}
+  .skill-group h3{font-size:13px;color:var(--ink-faint);font-weight:700;margin-bottom:14px;text-transform:uppercase;letter-spacing:.6px;}
+  .tags{display:flex;flex-wrap:wrap;gap:0;}
   .tag{
-    font-size:13.5px;color:var(--text);background:var(--panel);
-    border:1px solid var(--panel-border);padding:7px 14px;border-radius:100px;
+    font-size:13.5px;color:var(--ink-soft);
+    padding:8px 14px 8px 0;margin-right:14px;
+    border-bottom:1px solid var(--line);
   }
-  .lang-row{display:flex;gap:28px;flex-wrap:wrap;margin-top:8px;}
-  .lang b{font-size:15px;font-weight:700;}
-  .lang span{display:block;color:var(--text-dim);font-size:13.5px;margin-top:2px;}
+  .lang-row{display:flex;gap:32px;flex-wrap:wrap;margin-top:8px;}
+  .lang b{font-family:var(--serif);font-size:16px;font-weight:700;}
+  .lang span{display:block;color:var(--ink-soft);font-size:13.5px;margin-top:2px;}
 
   /* CONTACT */
   .contact-box{
-    background:linear-gradient(135deg,rgba(14,157,120,0.06),rgba(74,95,214,0.06));
-    border:1px solid var(--panel-border);border-radius:20px;
-    padding:44px 32px;text-align:center;
+    background:var(--bg-panel);
+    border:1px solid var(--line);border-radius:var(--radius-md);
+    padding:48px 32px;text-align:center;
   }
   .contact-box h2{font-size:28px;}
-  .contact-box p{color:var(--text-dim);margin-top:12px;max-width:480px;margin-left:auto;margin-right:auto;}
-  .contact-actions{display:flex;gap:12px;justify-content:center;margin-top:26px;flex-wrap:wrap;}
+  .contact-box p{color:var(--ink-soft);margin-top:12px;max-width:480px;margin-left:auto;margin-right:auto;}
+  .contact-actions{display:flex;gap:12px;justify-content:center;margin-top:28px;flex-wrap:wrap;}
 
-  footer{padding:32px 0 48px;text-align:center;color:var(--text-faint);font-size:13px;}
+  footer{padding:32px 0 48px;text-align:center;color:var(--ink-faint);font-size:13px;}
 
   /* PRINT (used to generate the downloadable PDF) */
   @media print{
@@ -248,16 +307,17 @@
     section{padding:20px 0;}
     .job{padding:16px 0;}
     .role-track{gap:18px;}
-    .stats,.edu,.photo,.btn-primary,.btn-secondary{box-shadow:none !important;}
     .edu{page-break-inside:avoid;break-inside:avoid;}
     .job-title,.role-title,.edu-title{page-break-after:avoid;break-after:avoid;}
-    .job-period,.job-company-header{page-break-after:avoid;break-after:avoid;}
+    .job-period,.job-company{page-break-after:avoid;break-after:avoid;}
     li{page-break-inside:avoid;break-inside:avoid;}
   }
   @page{ margin:12mm 12mm; }
 </style>
 </head>
 <body>
+
+<a class="skip-link" href="#main">Перейти к содержанию</a>
 
 <header class="nav">
   <div class="nav-inner">
@@ -269,44 +329,49 @@
       <a href="#skills">Навыки</a>
     </nav>
     <div class="nav-actions">
-      <a class="nav-pdf" href="Petrenko_Nikita_Resume.pdf" download><span>Скачать резюме в </span>PDF</a>
-      <a class="nav-cta" href="mailto:petrenkonikitagm@gmail.com">Написать</a>
+      <a class="btn-nav nav-pdf" href="Petrenko_Nikita_Resume.pdf" download><span>Скачать резюме в</span>PDF</a>
+      <a class="btn-nav nav-cta" href="mailto:petrenkonikitagm@gmail.com">Написать</a>
+      <details class="nav-mobile-toggle">
+        <summary aria-label="Открыть меню разделов"><span class="hamburger"><span></span><span></span><span></span></span></summary>
+        <nav class="nav-links-mobile">
+          <a href="#about">Обо мне</a>
+          <a href="#experience">Опыт</a>
+          <a href="#education">Образование</a>
+          <a href="#skills">Навыки</a>
+        </nav>
+      </details>
     </div>
   </div>
 </header>
 
-<main class="wrap">
+<main class="wrap" id="main">
 
   <section class="hero" style="border-top:none;">
     <div class="hero-inner">
       <img class="photo" src="photo.png" alt="Никита Петренко">
       <div class="hero-text">
-        <div class="eyebrow">Открыт к предложениям</div>
         <h1>Никита Петренко</h1>
         <div class="role">Менеджер проектов / Руководитель проектов</div>
+        <div class="status-line"><span class="status-dot" aria-hidden="true"></span>Открыт к новым проектам</div>
 
-        <div class="exp-badge">
-          <span class="exp-badge-icon">💼</span>
-          <div>
-            <b>5 лет 10 месяцев</b>
-            <span>общего опыта в проектном менеджменте</span>
-          </div>
+        <div class="tenure">
+          <span class="tenure-label">Опыт в проектном менеджменте</span>
+          <span class="tenure-value">5 лет 10 месяцев</span>
         </div>
 
         <div class="contact-row">
           <a class="contact-chip" href="mailto:petrenkonikitagm@gmail.com">
-            <span class="ico">✉️</span>petrenkonikitagm@gmail.com
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+            petrenkonikitagm@gmail.com
           </a>
           <a class="contact-chip" href="https://t.me/p0werranger" target="_blank" rel="noopener">
-            <span class="ico">✏️</span>Написать в Telegram
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M21 4L2.5 11.5l6 2M21 4l-3 16-8.5-6.5M21 4L9.5 15l-1 5.5"/></svg>
+            Написать в Telegram
           </a>
         </div>
 
-        <div class="meta-row">
-          <span class="pill">📍 Москва</span>
-          <span class="pill">🧳 Готов к командировкам</span>
-          <span class="pill">🎓 B2 английский</span>
-        </div>
+        <div class="meta-line">Москва<span aria-hidden="true">·</span>Готов к командировкам<span aria-hidden="true">·</span>B2 английский</div>
+
         <div class="hero-cta no-print">
           <a class="btn-primary" href="Petrenko_Nikita_Resume.pdf" download>Скачать резюме в PDF ↓</a>
           <a class="btn-secondary" href="#experience">Смотреть опыт ↓</a>
@@ -316,11 +381,11 @@
   </section>
 
   <section style="padding-top:0;border-top:none;">
-    <div class="stats">
-      <div class="stat"><b>−24%</b><span>обращений в поддержку Драйва</span></div>
-      <div class="stat"><b>×2.5</b><span>рост автоматизированных обращений</span></div>
-      <div class="stat"><b>−20%</b><span>затрат на промокоды без потери качества</span></div>
-      <div class="stat"><b>+55%</b><span>рост доли роботизированных ответов</span></div>
+    <div class="figures">
+      <div class="fig"><b>−24%</b><span>обращений в поддержку Драйва</span></div>
+      <div class="fig"><b>×2.5</b><span>рост автоматизированных обращений</span></div>
+      <div class="fig"><b>−20%</b><span>затрат на промокоды без потери качества</span></div>
+      <div class="fig"><b>+55%</b><span>рост доли роботизированных ответов</span></div>
     </div>
   </section>
 
@@ -328,14 +393,14 @@
     <div class="section-head">
       <h2>Обо мне</h2>
     </div>
-    <p class="lead" style="font-size:16.5px;color:var(--text);max-width:760px;">
+    <p>
       Менеджер проектов с опытом управления продуктом в высоконагруженных сервисах.
       Веду проекты полным циклом: от постановки OKR и приоритизации бэклога до запуска
       и передачи в операционку — например, с нуля выстроил поддержку нового продукта
       в Яндекс Go. Координирую продукт, разработку, операционные и смежные команды
       как партнёр, а не постановщик задач.
     </p>
-    <p class="lead" style="font-size:16.5px;color:var(--text);max-width:760px;margin-top:14px;">
+    <p>
       Каждое решение подтверждаю цифрами: снизил долю обращений в поддержку на 24%,
       увеличил автоматизацию в 2,5 раза, сократил издержки на 20–40% без потери
       качества сервиса.
@@ -350,8 +415,10 @@
     <div class="job">
       <div class="job-period">Сентябрь 2025 —<br>настоящее время<span class="dur">11 месяцев</span></div>
       <div>
+        <div class="job-head">
+          <div class="job-company">Яндекс <span class="loc">· Москва</span></div>
+        </div>
         <div class="job-title">Менеджер проектов</div>
-        <div class="job-company">Яндекс · Москва</div>
         <p class="job-summary">Управление продуктовым направлением поддержки Яндекс Такси и Яндекс Драйв: постановка и трекинг OKR, ведение продуктового бэклога, координация продукта, разработки и операционных команд.</p>
         <ul>
           <li>Снизил долю обращений в поддержку Драйва на 24% за счёт запуска и координации продуктовых инициатив</li>
@@ -367,7 +434,9 @@
     <div class="job">
       <div class="job-period">Февраль 2022 —<br>Сентябрь 2025<span class="dur">3 года 7 месяцев</span></div>
       <div>
-        <div class="job-company-header">Сравни.ру, ООО · <span class="loc">Москва</span></div>
+        <div class="job-head">
+          <div class="job-company">Сравни.ру, ООО <span class="loc">· Москва</span></div>
+        </div>
         <div class="role-track">
           <div class="role-item">
             <div class="role-period">Октябрь 2024 — Сентябрь 2025 · 1 год</div>
@@ -406,8 +475,10 @@
     <div class="job">
       <div class="job-period">Сентябрь 2020 —<br>Март 2021<span class="dur">7 месяцев</span></div>
       <div>
+        <div class="job-head">
+          <div class="job-company">Aviasales.ru <span class="loc">· Санкт-Петербург</span></div>
+        </div>
         <div class="job-title">Customer Support Specialist</div>
-        <div class="job-company">Aviasales.ru · Санкт-Петербург</div>
         <ul>
           <li>Работал с системой тикетов, отслеживал статус обращений и контролировал их своевременное решение</li>
           <li>Поддерживал клиентов сервиса, улучшая пользовательский опыт</li>
@@ -420,8 +491,10 @@
     <div class="job">
       <div class="job-period">Сентябрь 2019 —<br>Май 2020<span class="dur">9 месяцев</span></div>
       <div>
+        <div class="job-head">
+          <div class="job-company">Рокетбанк <span class="loc">· Москва</span></div>
+        </div>
         <div class="job-title">Специалист отдела обработки заявок</div>
-        <div class="job-company">Рокетбанк · Москва</div>
         <ul>
           <li>Оказывал техническую поддержку клиентов, анализировал запросы и находил оптимальные решения</li>
           <li>Обрабатывал заявки на выпуск карт и проверял корректность данных</li>
@@ -502,8 +575,14 @@
       <h2>Открыт к новым проектам</h2>
       <p>Готов обсудить позицию менеджера или руководителя проектов. Проживаю в Москве, к переезду не готов, к командировкам — да.</p>
       <div class="contact-actions no-print">
-        <a class="btn-primary" href="mailto:petrenkonikitagm@gmail.com">✉️ petrenkonikitagm@gmail.com</a>
-        <a class="btn-secondary" href="https://t.me/p0werranger" target="_blank" rel="noopener">✏️ Написать в Telegram</a>
+        <a class="btn-primary" href="mailto:petrenkonikitagm@gmail.com">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true" style="margin-right:9px;"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+          petrenkonikitagm@gmail.com
+        </a>
+        <a class="btn-secondary" href="https://t.me/p0werranger" target="_blank" rel="noopener">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true" style="margin-right:9px;"><path d="M21 4L2.5 11.5l6 2M21 4l-3 16-8.5-6.5M21 4L9.5 15l-1 5.5"/></svg>
+          Написать в Telegram
+        </a>
         <a class="btn-secondary" href="Petrenko_Nikita_Resume.pdf" download>Скачать резюме в PDF ↓</a>
       </div>
     </div>
@@ -514,6 +593,15 @@
 <footer>
   © 2026 Никита Петренко · Резюме обновлено 24 июля 2026
 </footer>
+
+<script>
+  document.querySelectorAll('.nav-links-mobile a').forEach(function(a){
+    a.addEventListener('click', function(){
+      var d = document.querySelector('.nav-mobile-toggle');
+      if (d) d.removeAttribute('open');
+    });
+  });
+</script>
 
 </body>
 </html>
