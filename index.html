@@ -142,11 +142,11 @@
     line-height:0.95;max-width:14ch;
   }
   .hero-meta{
-    display:grid;grid-template-columns:auto 1fr auto;gap:48px;align-items:start;
+    display:grid;grid-template-columns:auto 1fr auto;gap:40px;align-items:center;
     margin-top:52px;padding-top:40px;border-top:1px solid var(--line);
   }
   .photo{
-    width:104px;height:104px;border-radius:50%;object-fit:cover;
+    width:144px;height:144px;border-radius:50%;object-fit:cover;
     flex-shrink:0;
   }
   .hero-info{min-width:220px;}
@@ -155,16 +155,16 @@
     .hero-info{min-width:0;}
   }
   .role{
-    font-size:15px;margin-top:0;font-weight:600;
-    text-transform:uppercase;letter-spacing:.04em;
+    font-size:17px;margin-top:0;font-weight:600;
+    text-transform:uppercase;letter-spacing:.03em;
   }
   .status-line{
-    display:flex;align-items:center;gap:8px;margin-top:14px;
+    display:flex;align-items:center;gap:8px;margin-top:10px;
     font-size:14px;color:var(--ink-soft);font-weight:500;
   }
   .status-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);flex-shrink:0;}
 
-  .tenure{margin-top:22px;}
+  .tenure{margin-top:26px;}
   .tenure-label{
     display:block;font-size:12px;color:var(--ink-faint);
     text-transform:uppercase;letter-spacing:.06em;font-weight:600;
@@ -239,7 +239,7 @@
     display:grid;grid-template-columns:170px 1fr;gap:28px;
     padding:36px 0;border-top:1px solid var(--line);
   }
-  .job:first-of-type{border-top:none;padding-top:0;}
+  .section-head + .job{border-top:none;padding-top:0;}
   .job-period{color:var(--ink-faint);font-size:13px;font-weight:600;line-height:1.5;}
   .job-period .dur{display:block;color:var(--ink-faint);font-weight:400;margin-top:3px;}
   .job-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;}
@@ -281,7 +281,7 @@
   .edu{
     padding:24px 0;border-top:1px solid var(--line);
   }
-  .edu:first-of-type{border-top:none;padding-top:0;}
+  .section-head + .edu{border-top:none;padding-top:0;}
   .edu-year{color:var(--accent);font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:.04em;}
   .edu-title{font-weight:700;font-size:18px;margin-top:8px;letter-spacing:-.01em;}
   .edu-sub{color:var(--ink-soft);font-size:14.5px;margin-top:4px;}
@@ -401,7 +401,7 @@
     </div>
   </section>
 
-  <section id="about">
+  <section id="about" style="border-top:none;">
     <div class="section-head">
       <h2>Обо мне</h2>
     </div>
