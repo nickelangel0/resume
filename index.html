@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Никита Петренко — Менеджер проектов</title>
-<meta name="description" content="Никита Петренко — менеджер проектов с опытом управления продуктом в высоконагруженных сервисах Яндекса и Сравни.ру">
+<meta name="description" content="Никита Петренко — менеджер проектов с опытом управления продуктом в высоконагруженных сервисах Яндекса и Сравни">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
 <link rel="icon" href="favicon-16.png" sizes="16x16" type="image/png">
@@ -243,9 +243,14 @@
   .job-period{color:var(--ink-faint);font-size:13px;font-weight:600;line-height:1.5;}
   .job-period .dur{display:block;color:var(--ink-faint);font-weight:400;margin-top:3px;}
   .job-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;}
-  .job-company{font-weight:700;font-size:19px;color:var(--ink);letter-spacing:-.01em;}
+  .job-company{display:flex;align-items:center;flex-wrap:wrap;gap:4px 10px;font-weight:700;font-size:19px;color:var(--ink);letter-spacing:-.01em;}
+  .company-link{display:inline-flex;align-items:center;gap:10px;min-height:44px;}
+  .company-link span{text-decoration:underline;text-decoration-color:var(--line);text-decoration-thickness:1px;text-underline-offset:4px;}
+  .company-link:hover{color:var(--accent);}
+  .company-link:hover span{text-decoration-color:currentColor;}
+  .company-logo{width:28px;height:28px;object-fit:contain;flex-shrink:0;}
   .job-company .loc{color:var(--ink-faint);font-weight:400;font-size:14px;}
-  .job-title{color:var(--accent);font-weight:600;font-size:14.5px;margin-top:4px;}
+  .job-title,.role-title{font-weight:600;font-size:16px;margin-top:4px;color:var(--ink);}
   .job-summary{color:var(--ink-soft);font-size:15.5px;line-height:1.7;margin-top:12px;}
   .job ul{margin-top:16px;}
   .job li{
@@ -271,7 +276,6 @@
     background:var(--accent);border:2px solid var(--bg);
   }
   .role-period{color:var(--ink-faint);font-size:12.5px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;}
-  .role-title{font-weight:600;font-size:16px;margin-top:4px;color:var(--ink);}
   @media (max-width:640px){
     .role-track{padding-left:20px;}
     .role-item::before{left:-25px;}
@@ -428,7 +432,13 @@
       <div class="job-period">Сентябрь 2025 —<br>настоящее время<span class="dur">1 год</span></div>
       <div>
         <div class="job-head">
-          <div class="job-company">Яндекс <span class="loc">· Москва</span></div>
+          <div class="job-company">
+            <a class="company-link" href="https://yandex.ru/company/" target="_blank" rel="noopener noreferrer">
+              <img class="company-logo" src="logo-yandex.png" width="28" height="28" alt="" loading="lazy" decoding="async">
+              <span>Яндекс</span>
+            </a>
+            <span class="loc">· Москва</span>
+          </div>
         </div>
         <div class="job-title">Менеджер проектов</div>
         <p class="job-summary">Управление продуктовым направлением поддержки Яндекс Такси и Яндекс Драйв: постановка и трекинг OKR, ведение продуктового бэклога, координация продукта, разработки и операционных команд.</p>
@@ -447,7 +457,13 @@
       <div class="job-period">Февраль 2022 —<br>Сентябрь 2025<span class="dur">3 года 7 месяцев</span></div>
       <div>
         <div class="job-head">
-          <div class="job-company">Сравни.ру, ООО <span class="loc">· Москва</span></div>
+          <div class="job-company">
+            <a class="company-link" href="https://www.sravni.ru/" target="_blank" rel="noopener noreferrer">
+              <img class="company-logo" src="logo-sravni.png" width="28" height="28" alt="" loading="lazy" decoding="async">
+              <span>Сравни</span>
+            </a>
+            <span class="loc">· Москва</span>
+          </div>
         </div>
         <div class="role-track">
           <div class="role-item">
@@ -488,7 +504,13 @@
       <div class="job-period">Сентябрь 2020 —<br>Март 2021<span class="dur">7 месяцев</span></div>
       <div>
         <div class="job-head">
-          <div class="job-company">Aviasales.ru <span class="loc">· Санкт-Петербург</span></div>
+          <div class="job-company">
+            <a class="company-link" href="https://www.aviasales.ru/" target="_blank" rel="noopener noreferrer">
+              <img class="company-logo" src="logo-aviasales.png" width="28" height="28" alt="" loading="lazy" decoding="async">
+              <span>Авиасейлс</span>
+            </a>
+            <span class="loc">· Санкт-Петербург</span>
+          </div>
         </div>
         <div class="job-title">Customer Support Specialist</div>
         <ul>
@@ -504,7 +526,13 @@
       <div class="job-period">Сентябрь 2019 —<br>Май 2020<span class="dur">9 месяцев</span></div>
       <div>
         <div class="job-head">
-          <div class="job-company">Рокетбанк <span class="loc">· Москва</span></div>
+          <div class="job-company">
+            <a class="company-link" href="https://rocketbank.ru/" target="_blank" rel="noopener noreferrer">
+              <img class="company-logo" src="logo-rocketbank.png" width="28" height="28" alt="" loading="lazy" decoding="async">
+              <span>Рокетбанк</span>
+            </a>
+            <span class="loc">· Москва</span>
+          </div>
         </div>
         <div class="job-title">Специалист отдела обработки заявок</div>
         <ul>
@@ -521,7 +549,7 @@
       <h2>Образование</h2>
     </div>
     <div class="edu">
-      <div class="edu-year">2023 · Бакалавр</div>
+      <div class="edu-year">2023 · Высшее образование · Бакалавр</div>
       <div class="edu-title">Финансовый университет при Правительстве Российской Федерации, Москва</div>
       <div class="edu-sub">Институт онлайн-образования, «Финансовые рынки и банки»</div>
     </div>
@@ -548,10 +576,17 @@
         <span class="tag">Проектный менеджмент</span>
         <span class="tag">Жизненный цикл проекта</span>
         <span class="tag">Формирование границ проекта</span>
+        <span class="tag">Планирование сроков и этапов</span>
+        <span class="tag">Декомпозиция задач</span>
+        <span class="tag">Бюджетирование проектов</span>
         <span class="tag">Управление ожиданиями</span>
         <span class="tag">Управление рисками</span>
+        <span class="tag">Управление изменениями</span>
         <span class="tag">Управление стейкхолдерами</span>
+        <span class="tag">Координация кросс-функциональных команд</span>
+        <span class="tag">Управление зависимостями</span>
         <span class="tag">Диаграмма Ганта</span>
+        <span class="tag">Запуск и передача проектов операционной команде</span>
       </div>
     </div>
 
